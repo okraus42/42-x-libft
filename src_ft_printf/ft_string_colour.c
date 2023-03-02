@@ -6,11 +6,11 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:55:41 by okraus            #+#    #+#             */
-/*   Updated: 2023/02/27 19:20:10 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/02 15:21:49 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../header/libft.h"
 
 int	ft_print_colour_fd(int fd, t_output	*t)
 {

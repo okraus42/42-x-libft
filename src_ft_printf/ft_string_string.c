@@ -6,11 +6,11 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:02:55 by okraus            #+#    #+#             */
-/*   Updated: 2023/01/31 17:22:09 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/02 15:21:49 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../header/libft.h"
 
 int	ft_print_char_fd(char c, int fd, t_output *t)
 {

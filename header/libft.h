@@ -6,22 +6,63 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:43:29 by okraus            #+#    #+#             */
-/*   Updated: 2023/01/14 13:43:30 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/02 15:19:55 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 
 # define LIBFT_H
+
+// INCLUDES
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
+# include <stdarg.h>
+
+// DEFINITIONS
+// GET_NEXT_LINE definitions
+
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 64
+# endif
+
+// FT_PRINTF definitions
+
+// STRUCTURES
+// LIBFT structure
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+// FT_PRINTF structure
+
+typedef struct s_output
+{
+	char	*string;
+	int		len;
+	int		precision;
+	int		padsize;
+	int		dash;
+	int		zero;
+	int		period;
+	int		hash;
+	int		space;
+	int		plus;
+	char	type;
+	int		base;
+}			t_output;
+
+// PROTOTYPES
+// LIBFT prototypes
 
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
@@ -66,5 +107,57 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+// GET_NEXT_LINE prototypes
+
+char	*read_file(int fd, char *str);
+char	*get(char *str);
+char	*next(char *str);
+char	*get_next_line(int fd);
+int		ft_find_char(char *s, char c);
+int		ft_strlen_gnl(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+
+// FT_PRINTF prototypes
+
+int			ft_printf(int fd, const char *s, ...);
+void		ft_putstuff(va_list arg, const char *s, int *q, t_output *t);
+void		ft_writestuff(int fd, const char *s, int *q);
+int			ft_putchar_fd(char c, int fd, t_output *t);
+int			ft_print_char_fd(char s, int fd, t_output *t);
+char		*ft_string_pointer(void *mem);
+int			ft_putpointer_fd(void *mem, int fd, t_output *t);
+int			ft_print_pointer_fd(void *mem, int fd);
+int			ft_putstring_fd(char *s, int fd, t_output *t);
+int			ft_print_string_fd(char *s, int fd, t_output *t);
+int			ft_putunsigned_fd(unsigned int u, int fd, t_output *t);
+int			ft_print_unsigned_fd(unsigned int u, int fd, t_output *t);
+char		*ft_string_unsigned(unsigned int u);
+int			ft_putinteger_fd(int d, int fd, t_output *t);
+int			ft_print_integer_fd(int d, int fd, t_output *t);
+char		*ft_string_integer(int d);
+int			ft_puthexabig_fd(unsigned int h, int fd, t_output *t);
+int			ft_print_hexabig_fd(unsigned int h, int fd, t_output *t);
+char		*ft_string_hexabig(unsigned int h);
+int			ft_puthexasmall_fd(unsigned int h, int fd, t_output *t);
+int			ft_print_hexasmall_fd(unsigned int h, int fd, t_output *t);
+char		*ft_string_hexasmall(unsigned int h);
+void		ft_initialise_struct(t_output *t);
+void		ft_dash_struct(t_output *t, int n);
+void		ft_prefill_struct(t_output *t, const char *s);
+int			ft_get_num(t_output *t, const char *s, int i);
+char		*ft_strjoin_freeleft(char *s1, char const *s2);
+char		*ft_strjoin_freeright(char const *s1, char *s2);
+char		*ft_padchar(char *s, int len, t_output *t);
+char		*ft_padint(char *s, t_output *t);
+char		*ft_precint(char *s, t_output *t);
+int			ft_putbasebig_fd(unsigned int b, int fd, t_output *t);
+int			ft_print_basebig_fd(unsigned int b, int fd, t_output *t);
+char		*ft_string_basebig(unsigned int b, t_output *t);
+int			ft_putbinocthex_fd(void *b, int fd, t_output *t);
+int			ft_print_binocthex_fd(unsigned char b, int fd, t_output *t);
+char		*ft_string_binocthex(unsigned char b, t_output *t);
+int			ft_putcolour_fd(int fd, t_output *t);
+int			ft_print_colour_fd(int fd, t_output	*t);
 
 #endif
