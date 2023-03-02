@@ -6,11 +6,11 @@
 /*   By: okraus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:37:57 by okraus            #+#    #+#             */
-/*   Updated: 2023/01/29 13:28:26 by okraus           ###   ########.fr       */
+/*   Updated: 2023/03/02 15:22:16 by okraus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../header/libft.h"
 
 char	*read_file(int fd, char *str)
 {
