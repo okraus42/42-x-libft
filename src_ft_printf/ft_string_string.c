@@ -36,7 +36,7 @@ int	ft_print_char_fd(char c, int fd, t_output *t)
 	return (i);
 }
 
-int	ft_putchar_fd(char c, int fd, t_output *t)
+int	ft_pf_putchar_fd(char c, int fd, t_output *t)
 {
 	int	i;
 

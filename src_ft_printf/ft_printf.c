@@ -27,7 +27,7 @@ void	ft_putstuff(va_list arg, const char *s, int *q, t_output *t)
 	else if (s[q[0]] == 'u')
 		q[1] += ft_putunsigned_fd(va_arg(arg, unsigned int), q[2], t);
 	else if (s[q[0]] == 'c')
-		q[1] += ft_putchar_fd(va_arg(arg, int), q[2], t);
+		q[1] += ft_pf_putchar_fd(va_arg(arg, int), q[2], t);
 	else if (s[q[0]] == 's')
 		q[1] += ft_putstring_fd(va_arg(arg, char *), q[2], t);
 	else if (s[q[0]] == 'd' || s[q[0]] == 'i')

@@ -25,9 +25,6 @@
 // DEFINITIONS
 // GET_NEXT_LINE definitions
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 64
 # endif
@@ -116,14 +113,14 @@ char	*next(char *str);
 char	*get_next_line(int fd);
 int		ft_find_char(char *s, char c);
 int		ft_strlen_gnl(char *s);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin_gnl(char *s1, char *s2);
 
 // FT_PRINTF prototypes
 
 int			ft_printf(int fd, const char *s, ...);
 void		ft_putstuff(va_list arg, const char *s, int *q, t_output *t);
 void		ft_writestuff(int fd, const char *s, int *q);
-int			ft_putchar_fd(char c, int fd, t_output *t);
+int			ft_pf_putchar_fd(char c, int fd, t_output *t);
 int			ft_print_char_fd(char s, int fd, t_output *t);
 char		*ft_string_pointer(void *mem);
 int			ft_putpointer_fd(void *mem, int fd, t_output *t);
