@@ -6,7 +6,7 @@
 #    By: okraus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/14 13:43:18 by okraus            #+#    #+#              #
-#    Updated: 2023/03/04 13:41:13 by okraus           ###   ########.fr        #
+#    Updated: 2023/03/04 15:33:29 by okraus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,14 @@ NUM_COM		:=	make -n | wc -l
 # SOURCES
 
 SRC			=	$(addprefix $(SRC_LIB_DIR), $(addsuffix .c, $(SRC_LIB))) \
-	$(addprefix $(SRC_GNL_DIR), $(addsuffix .c, $(SRC_GNL))) \
-	$(addprefix $(SRC_PF_DIR), $(addsuffix .c, $(SRC_PF)))
+				$(addprefix $(SRC_EX_DIR), $(addsuffix .c, $(SRC_EX))) \
+				$(addprefix $(SRC_GNL_DIR), $(addsuffix .c, $(SRC_GNL))) \
+				$(addprefix $(SRC_PF_DIR), $(addsuffix .c, $(SRC_PF)))
 
 # Source directories
 
 SRC_LIB_DIR	=	src_libft/
+SRC_EX_DIR	=	src_ft_extras/
 SRC_GNL_DIR	=	src_ft_get_next_line/
 SRC_PF_DIR	=	src_ft_printf/
 
@@ -88,6 +90,9 @@ SRC_LIB		=	ft_atoi \
 
 # Extra utility functions
 
+SRC_EX		=	ft_print_memory \
+				ft_print_memory_plus
+
 # Get next line functions
 
 SRC_GNL		=	get_next_line \
@@ -122,7 +127,7 @@ RETURN		=	\033[1F\r\033[2K
 # Printing
 
 BAR_LENGTH	:=	50
-PRINT1		=	printf "[ACT $(HIT_COUNT2) | TOT $(HIT_TOTAL)]" ;
+PRINT1		=	printf "[$(HIT_COUNT2)/$(HIT_TOTAL)]" ;
 PRINT2		=	for num in `seq 1 $(BAR_LENGTH)` ; do \
 					if [ $$num -le $(PERC) ] ; then \
 						printf "$(REVERSE) $(NRM_FORMAT)" ; \
@@ -134,6 +139,7 @@ PRINT2		=	for num in `seq 1 $(BAR_LENGTH)` ; do \
 # Objects
 
 OBJ			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_LIB))) \
+				$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_EX))) \
 				$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_GNL))) \
 				$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_PF)))
 
@@ -179,7 +185,16 @@ $(OBJ_DIR)%.o:	$(SRC_LIB_DIR)%.c # start_msg
 				@$(PRINT2)
 				@$(PRINT1)
 				@$(CC) $(CFLAGS) -c $< -o $@
-				@$(ECHO) AAA
+				@$(ECHO)
+
+$(OBJ_DIR)%.o:	$(SRC_EX_DIR)%.c
+				@mkdir -p $(OBJ_DIR)
+				@sleep 0.01
+				@echo "$(RETURN)$(RETURN)$(YELLOW)Compiling extras: $< $(NRM_FORMAT)"
+				@$(PRINT2)
+				@$(PRINT1)
+				@$(CC) $(CFLAGS) -c $< -o $@
+				@$(ECHO)
 
 $(OBJ_DIR)%.o:	$(SRC_GNL_DIR)%.c # lib_msg
 				@mkdir -p $(OBJ_DIR)
@@ -188,7 +203,7 @@ $(OBJ_DIR)%.o:	$(SRC_GNL_DIR)%.c # lib_msg
 				@$(PRINT2)
 				@$(PRINT1)
 				@$(CC) $(CFLAGS) -c $< -o $@
-				@$(ECHO) BBB
+				@$(ECHO)
 
 $(OBJ_DIR)%.o:	$(SRC_PF_DIR)%.c # gnl_msg
 				@mkdir -p $(OBJ_DIR)
@@ -197,14 +212,14 @@ $(OBJ_DIR)%.o:	$(SRC_PF_DIR)%.c # gnl_msg
 				@$(PRINT2)
 				@$(PRINT1)
 				@$(CC) $(CFLAGS) -c $< -o $@
-				@$(ECHO) CCC
+				@$(ECHO)
 
 $(NAME): 		$(OBJ) # pf_msg
 				@echo "$(RETURN)$(RETURN)$(GREEN)Compilation complete!$(NRM_FORMAT)"
 				@$(LIBC) $(NAME) $(OBJ)
 				@$(PRINT2)
 				@$(PRINT1)
-				@$(ECHO) DDD
+				@$(ECHO)
 				@echo "$(GREEN)Amazing <<$(REVERSE)libft.a$(NRM_FORMAT)$(GREEN)>> compiled!$(NRM_FORMAT)"
 
 # Remove the object files and the directory
@@ -214,7 +229,7 @@ clean:
 				@echo "$(RED)Objects removed!$(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
-				@$(ECHO) EEE
+				@$(ECHO)
 
 # Remove the objects and then the library
 
@@ -223,14 +238,14 @@ fclean:			clean
 				@echo "$(RETURN)$(RED)Library deleted!$(NRM_FORMAT)"
 				@$(PRINT2)
 				@$(PRINT1)
-				@$(ECHO) FFF
+				@$(ECHO)
 
 # Remove stuff and make it all again
 
 re: fclean all
 	@$(PRINT2)
 	@$(PRINT1)
-	@$(ECHO) GGG
+	@$(ECHO)
 
 # Phony stuff for rules
 

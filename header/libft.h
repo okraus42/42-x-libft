@@ -105,6 +105,11 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
+// EXTRA prototypes
+
+void	*ft_print_memory(void *addr, int fd, unsigned int size);
+void	*ft_print_memory_plus(void *addr, int fd, unsigned int size);
+
 // GET_NEXT_LINE prototypes
 
 char	*read_file(int fd, char *str);

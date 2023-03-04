@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "../header/libft.h"
 
 static void	ft_format_plus(int fd, unsigned char c)
 {

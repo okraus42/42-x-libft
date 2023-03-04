@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/libft.h"
+#include <stdio.h>
+
+int	ft_printf(int fd, const char *s, ...);
 
 int	main(void)
 {
